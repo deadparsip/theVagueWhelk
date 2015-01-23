@@ -1,0 +1,149 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>The Vague Whelk</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <meta name="description" content="Vague whelk, poetician, badger husbandrer, mage, front-end developer and table.">
+		<meta name="keywords" content="Vague whelk, Jon Stevens, Croydon, space badgers, parsnips, horses, beards, mermaids, web designer, front-end developer, web developer, table">
+		<meta name="author" content="Jon Stevens">
+		<link rel="shortcut icon" href="favicon.png">
+		<link href="css/bootie.css" rel="stylesheet">
+		<link href="css/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+		<link href="css/main.min.css" rel="stylesheet">
+		<link href="css/animations.css" rel="stylesheet">
+		<!--[if lt IE 9]>
+		<script src="js/html5shiv.js"></script>
+		<script src="js/respond.min.js"></script>
+		<![endif]-->		
+	</head>
+	<body>
+	<div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">the vague whelk</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>            
+			<li><a href="#">Poetry Corner</a></li>
+            <li><a href="stories.html">Stories</a></li>
+			<li class="avtive"><a href="#">News</a></li>
+            <li><a href="films.html">Films</a></li>
+			<li><a href="pictures.html">Pics</a></li>
+          </ul>	 
+        </div>
+		  <aside id="socials">
+			  <div class="fb-like" data-href="http://jonpstevens.com/poetry.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+		  </aside>	
+      </div>
+    </div>
+	
+	<div class="jumbotron">
+	  <div class="container">
+		<h1>Vague whelk, look not upon my foul form</h1>
+		<p>Poetry was invented in 1993, after a questionable accident with a circular saw, 3 pints of liquidated chicken, four nuns, and the offside rule. It has since gone from strength to strength, even once being mentioned in a newspaper underneath the heading "Poetry: So what's it all about?"</p>
+		<p>Some poetry is dark and disturbing, like a Guiness poo. Here is a bit you can put in your mind. (Poetry, not Guiness poo). </p>
+	  </div>
+	</div>
+	
+	
+	<div class="layout">
+		<div id="freewall" class="free-wall">	
+			<article class="cell animated">
+				<h2 id="wren">Farming chalk</h2>
+				<p>I was offered a position, namely that of chalk farmer. Chalk supplies in London are very low at the moment, due to a lack of natural predators, apparently (I was confused at this point). I accepted immediately.<br>
+				Interestingly it was at a small to medium sounding farm in the Chalk Farm area.
+				I had always wanted to farm chalk at a chalk farm in chalk farm. But I was very concerned that should anyone ask me what I did for a living
+				it would sound faintly ridiculous.
+				So I killed myself and set fire to the body fourteen times, to make sure no one found the evidence.<br><br>
+				<em>fin</em>
+				</p>				
+			</article>
+			
+			<article class="cell fourteen animated">
+				<h2 id="custard">Advert</h2>
+				<p>Can you test that all of our custard is thick enough to meet our high standards?<Br><Br>
+				By that I mean you should not be able to swim in it even if you are really really strong, like a carbon fiber whiskey.<Br><Br>
+				When I was a boy, I often dreamt of working in a custard factory. Imagine, I thought to myself during one of my wetter childish reveries, imagine if I could actually walk about in a place that makes my favourite yellow non-newtonian liquid-based dessert. I would probably either die of happy, or just be quite pleased for a while until I realised it was a fruitless* dream and then moved on to the trifle factory down the road. (ha)<Br><Br>
+				Either way, Imagine! I reveried. I reveried hard. Harder than anyone else of that era, to my knowledge.<Br>
+				Today, that dream has come true. And even though you should never start a sentence with And, I want to share that never ending joy with you, an unemployed custard-ignoring fiend.<Br><Br>
+				Imagine!
+				</p>
+			</article>
+		</div>
+	</div>        	
+        
+        <footer>
+        <p>&copy; Strongly Badgered 2014</p>
+        </footer>
+		
+        <script src="js/jquery-2.1.0.min.js"></script>        
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/jquery.mobile.custom.min.js"></script>
+		<script type="text/javascript" src="js/freewall.js"></script>
+		<div id="fb-root"></div>
+		
+		<script type="text/javascript">			
+		    if ($(window).width()>400) { //weird bug on iphone where content disappears so for now only run freewall for tablets/desktops. I like swans better than js plugins usually
+			var wall = new freewall("#freewall");
+			wall.reset({
+				//draggable: true,
+				selector: '.cell',
+				animate: true,
+				cellW: 350,
+				cellH: 400,
+				fixSize: null,
+				selector: '> article',
+			    onResize: function() {
+				    wall.refresh();
+				}
+				//onComplete: function() {  this for some reasons crashes browser
+			     //   wall.refresh();
+			   // }
+			});
+			wall.fitWidth();
+			// for scroll bar appear;
+			$(window).trigger("resize");
+			}
+			var colour = [
+                "rgb(92, 186, 255)",
+                "rgb(252, 190, 92)",
+                "rgb(255, 105, 105)",
+                "rgb(152, 255, 132)",
+                "rgb(191, 108, 255)",
+                "rgb(139, 210, 255)",
+                "rgb(254,255, 137)",
+                "rgb(108, 255, 132)",
+                "rgb(255, 251, 194)",
+                "rgb(156, 182, 255)",
+                "rgb(180, 179, 225)"
+			];
+
+			var cells = $('.cell'), randy = 0;
+
+			$(cells).each(function (index) {
+			    randy = Math.floor(Math.random() * 11);
+			    $(cells[index]).css('background-color', colour[randy]);				
+			});					
+			
+			//facebooks
+			(function (d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s); js.id = id;
+			js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=441624989266596";
+			fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));
+
+		</script>
+		<script src="js/mobile.js"></script>
+		
+	</body>
+</html>

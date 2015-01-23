@@ -1,0 +1,111 @@
+body {
+	background-color: #175563;
+	background-attachment: fixed;
+	background-image: url(../images/site/background.png);
+	background-repeat: no-repeat;
+	background-position: center top;
+}
+#content {
+	margin-top: 0px;
+	margin-right: auto;
+	margin-bottom: 0px;
+	margin-left: auto;
+	position: relative;
+	width: 980px;
+}
+header  {
+	margin-right: auto;
+	margin-left: auto;
+	position: relative;
+	height: 220px;
+	width: 980px;
+}
+header .logo  {
+	background-image: url(../images/site/angryceevee-logo.png);
+	background-attachment: scroll;
+	background-repeat: no-repeat;
+	height: 200px;
+	width: 162px;
+	top: 20px;
+	position: relative;
+}
+header .logo a {
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+}
+header .title {
+	height: 136px;
+	width: 392px;
+	position: absolute;
+	background-attachment: scroll;
+	background-image: url(../images/site/header-title.png);
+	background-repeat: no-repeat;
+	top: 20px;
+	left: 180px;
+}
+header #topScores {
+	position: absolute;
+	right: 100px;
+	background-attachment: scroll;
+	background-image: url(../images/site/top-scores.png);
+	background-repeat: no-repeat;
+	height: 188px;
+	width: 298px;
+	bottom: -5px;
+}
+header .bad-recruiter {
+	background-attachment: scroll;
+	background-image: url(../images/site/bar-recruiter.png);
+	background-repeat: no-repeat;
+	height: 136px;
+	width: 127px;
+	position: absolute;
+	z-index: 10;
+	right: 0px;
+	bottom: -5px;
+}
+#topScores .top {
+	color: #FFF;
+	position: absolute;
+	left: 45px;
+	width: 205px;
+}
+#topScores .top.name-1 {
+	top: 70px;
+}
+#topScores .top.name-2 {
+	top: 108px;
+}
+#topScores .top.name-3 {
+	top: 143px;
+}
+footer {
+	width: 980px;
+	margin-right: auto;
+	margin-left: auto;
+	position: relative;
+}
+footer .instruction {
+	background-attachment: scroll;
+	background-image: url(../images/site/footer-instructions.png);
+	background-repeat: no-repeat;
+	height: 328px;
+	width: 820px;
+	margin-top: 40px;
+}
+
+
+
+#game {
+	border: 7px solid #b4d8e3;
+	background-color: #FFF;
+	height: 650px;
+	-webkit-box-shadow: 3px 3px 10px rgba(50, 50, 50, 0.5);
+	-moz-box-shadow:    3px 3px 10px rgba(50, 50, 50, 0.5);
+	box-shadow:         3px 3px 10px rgba(50, 50, 50, 0.5);
+	z-index: 5;
+	position: relative;
+}

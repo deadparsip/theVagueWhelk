@@ -1,0 +1,154 @@
+@import url(http://fonts.googleapis.com/css?family=Alegreya+Sans+SC|Amatic+SC);
+@import url(http://fonts.googleapis.com/css?family=Special+Elite|Comfortaa:400,700);
+
+ body {
+    line-height:1.4;
+    background:#1497f8;
+    font-family: 'Special Elite', cursive;
+    letter-spacing:-1px;
+    min-height:100%
+}
+.navbar-inverse {
+    border-color:#080808;
+    background:rgba(0, 0, 0, .85)
+}
+article {
+    background:#eee;
+    padding: 20px 10px 0px;
+   
+
+}
+article.cell {
+   width:400px;
+   margin:10px;
+}
+
+@media (max-width:320px) {
+body {
+   max-width:310px;
+   overflow:hidden;
+}
+article.cell {
+   width:320px;
+   margin:0 0 30px 0;
+   
+}
+#freewall, .layout {
+   padding:0;
+   margin:0 ;
+   width:320px;
+   overflow:hidden;
+}
+footer {
+max-width:300px;
+}
+.container {
+   width:300px;
+}
+}
+
+@media (min-width:860px) and (max-width:1279px) {
+#freewall, .layout {
+   margin:0 auto;
+   width:860px;
+}
+}
+@media (min-width:1280px) and (max-width:1288px) { 
+#freewall, .layout {
+   margin:0 auto;
+   width:1281px;
+}
+}
+@media (min-width:1289px) and (max-width:1700px) {
+#freewall, .layout {
+   padding:0;
+   margin:0 auto;
+   width:1262px;
+   overflow:hidden;
+
+}
+}
+@media (min-width:1701px) and (max-width:2300px) {
+#freewall, .layout {
+   width:1701px;
+   margin:0 auto;
+}
+}
+
+article img {
+    margin:16px 0;
+    border-radius:5px;
+}
+.col-lg-12 .img-responsive {
+    width:100%;
+    margin:0 auto
+}
+.col-lg-12.story .img-responsive {
+    width:93%
+}
+#freewall {position:relative;}
+.layout {
+}
+footer p a, footer p a:visited, footer p a:hover {
+    color:darkblue;
+    text-decoration:underline
+}
+.col-lg-6.col-md-12.about {
+    background:#feff89
+}
+.col-lg-6.col-md-12.poetry {
+    background-color:#5cbaff
+}
+.col-lg-6.col-md-12.stories {
+    background-color:#6cff84
+}
+.col-lg-6.col-md-12.about {
+    background-color:#fcbe5c
+}
+
+
+@media (max-width:768px) {
+    .jumbotron {
+        padding:30px 0
+    }
+    .jumbotron h1 {
+        padding-right:0;
+
+    }
+    .jumbotron {
+        background-image:none
+    }
+    .ui-dialog .ui-dialog-content {
+        font-size:1.2em;
+        font-family:'Amatic SC'
+    }
+    .ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget-content {
+        border:0;
+        text-align:center;
+        background:#feff89
+    }
+    .ui-dialog.ui-widget {
+        box-shadow:0 2px 3px #000
+    }
+    .ui-dialog .ui-dialog-titlebar {
+        display:none
+    }
+    .ui-widget button {
+        padding:5px 20px;
+        box-shadow:none;
+        border:0;
+        margin:0 auto;
+        float:none
+    }
+}
+@media (min-width:992px) {
+    article.cell {
+        min-height:220px;
+
+    }
+    html .col-lg-6 {
+        width:48%;
+        margin:1%;
+        float:left
+    }
+}	

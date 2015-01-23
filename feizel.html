@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	<title>Jon Stevens, Vague Whelk on a table of poems</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Jon Stevens, vague whelk, badger husbandrer, front-end developer and table.">
+	<meta name="keywords" content="Jon Stevens, web designer, front-end developer, poetry, web developer, Croydon, badgers, parsnips, horses, beards, mermaids">
+	<meta name="author" content="Jon Stevens">
+	<link rel="shortcut icon" href="assets/ico/favicon.png">
+	<link href="css/bootstrap.css" rel="stylesheet">
+	<link href="css/main.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/slide.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+ 
+  <div class="container">
+    <div id="slides">
+	  <img src="img/feizel8.jpg" alt="">
+	  <img src="img/feizel1.jpg" alt="">
+      <img src="img/feizel2.jpg" alt="">
+      <img src="img/feizel3.jpg" alt="">
+      <img src="img/feizel4.jpg" alt="">
+	  <img src="img/feizel5.jpg" alt="">
+	  <img src="img/feizel6.png" alt="">
+	  <img src="img/feizel7.jpg" alt="">
+    </div>
+  </div>
+
+  <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+  <script src="js/jquery.slides.min.js"></script>
+
+  <script>
+    $(function() {
+      $('#slides').slidesjs({
+        width: 840,
+        height: 728,
+        play: {
+          active: true,
+          auto: true,
+          interval: 6000,
+          swap: true,
+		  navigation: true
+        }
+      });
+    });
+  </script>
+</body>
+</html>
