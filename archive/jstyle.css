@@ -1,0 +1,229 @@
+@import url(https://fonts.googleapis.com/css?family=Quicksand:400,700);
+body {
+    font-family: 'Quicksand', sans-serif; width:100%; margin:0; padding:0; background:#000;overflow:hidden;
+    
+}
+
+
+/*Fonts*/
+h1, h1 a {
+    font-size:34px; font-weight:400; color:#fff; text-align:right;margin:1% 2% 0;
+}
+h2 {
+    font-size:30px; font-weight:400; margin: 1% 0 15px;
+}
+a {
+    color:#000; text-decoration:none;
+}
+#home,.links {
+    color:#fff; font-size:24px; 
+}
+a#home {
+    position:absolute;top:5px;left:5px;
+}.links {
+    -webkit-transition: all .6s ease-out; transition: all .6s ease-out;
+}
+
+#next {float:right; top:-24px;position:relative; margin-right:1%; display:none;}
+#prev {float:left; top:-20px; position:relative; margin-left:1%;display:none;}
+.opac {
+    opacity:0.4;
+}
+
+.helper {
+        -webkit-transition: all 2.6s ease-out; transition: all 2.6s ease-out; display:none; color:#fff;
+}
+
+
+
+
+/*Elements*/
+#wrapper {
+    width:96%; padding:0; margin:7% 2% 0; text-align:center; 
+}
+
+#main {
+    width:99%; padding:1% 0 0 1%; margin:0 auto; max-width:1024px;position:relative;
+}
+
+.boxes {
+    width:96%; margin:3% 1% 1% 0;padding:1% 1% 3% 1%;background:#ccc;min-height:100px;display:inline-block; text-align:center;display:none;
+}
+
+.boxes p { 
+	margin:0 2%;
+	text-align:left
+}
+.stories .boxes p {
+	margin:2%;
+}
+.poetry .boxes p { 	
+	text-align:center
+}    
+.boxes img, .stories .boxes p, .bio .boxes p {
+    width:96%;    
+}
+    
+.poetry .boxes a,.stories .boxes a {
+    text-decoration:underline;
+}
+.boxes a:hover {
+    background:#aeadad;
+}
+
+
+
+#botty {
+    position:fixed;bottom:-40px;width:100%;min-height:45px;margin:0 auto;background:#ccc;
+    -webkit-transition: all .6s ease-out; transition: all .6s ease-out;
+    -webkit-backface-visibility: hidden;
+	display:none
+}
+#botty.upIt {
+    bottom:0;
+}
+#botty .contact {
+    width:45px;height:45px;float:left;background:url(/img/contactSprite.png)0 0 #fff;
+    background-size:1200%;
+}
+#botty .contact.twitter {
+    background-position:-94% 0;
+}
+#botty .contact.google {
+    background-position:-81% 0;
+}
+#botty .contact.fiddle {
+    background-position:-144.3% 0;
+}
+#botty .contact.fito {
+    background-position:-66.5% 0;
+}
+#botty .contact.linkedin {
+    background-position:-50.5% 0;
+}
+#botty .contact.git {
+    background-position:-18% 0; 
+    width:49px;
+}
+#botty .contact a {
+    display:block;width:50px;height:55px;
+}
+
+
+
+
+
+
+
+
+
+
+/***************************************** tabs *****************************************/
+@media only screen and (min-width: 520px) { 
+    h1,h1 a {
+        font-size:70px; line-height:1em;
+    }
+    h2 {
+        font-size:37px;
+        margin:5px auto 15px;
+    }    
+    a#home {
+        font-size:28px;
+        position:absolute;
+        top:2%;
+        left:1%;
+        display:block;
+    }    
+    
+    #wrapper {
+		margin-top:6%;
+    }
+    #main {
+        padding-top:0;
+    }
+    
+    .boxes {
+        width:48%; 
+        min-height:250px;
+        float:left;		
+    }
+	
+	.boxes p {
+		text-align:left;
+	}
+	.poetry .boxes p {
+			text-align:center;
+	}
+    .poetry .boxes, .home .boxes, .stories .boxes, .bio .boxes, .pics .boxes {
+        width:96%;
+        max-width:500px;
+        margin:3% auto; 
+        float:none;
+        min-height:10px;
+		max-width:980px;
+    }
+    
+    
+    #botty {
+        bottom:-75px;
+    }
+    #botty .contact {
+        background-size:normal;    
+    }
+    #botty .contact, #botty .contact a,#botty .contact.git,#botty .contact.git a {
+        width:100px;height:100px;
+    }   
+    
+}
+
+
+
+
+
+
+
+
+
+/***************************************** desktops *****************************************/
+@media only screen and (min-width: 980px) { 
+    h2 {
+        font-size:47px;
+    }
+    
+    #main {
+        min-width:980px;
+    }
+
+    #next {
+        display:block;
+    }
+    #prev {        
+        display:block;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/*****************************fixes**************************************/
+.cf:before,
+.cf:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.cf:after {
+    clear: both;
+}
+
+/**
+ * For IE 6/7 only
+ * Include this ru
