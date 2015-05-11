@@ -13,7 +13,13 @@ function Calippo() {
         $boxes = $('.boxes');
         timer = 1;
 
-        window.localStorage.setItem('widths', width);
+		var cacheDate = localStorage.getItem('cache');
+		if (cacheDate !== "casserole") {
+				window.localStorage.clear();
+				window.localStorage.setItem('cache', "casserole");
+		}	
+        
+		window.localStorage.setItem('widths', width);
 
         $botty.on('mouseover touchstart', function () {
             $(this).addClass("upIt");
@@ -62,11 +68,11 @@ function Calippo() {
             timer = setTimeout(getSizes, 200);
         });
 
-        if ($istouchdevice) {
+        if ($('.helper').is(':visible')) {
             $('.helper').show();
 			setTimeout(function () {
 			   $helper.fadeOut(500);
-			}, 3000);			
+			}, 2000);			
         }
 		
     }

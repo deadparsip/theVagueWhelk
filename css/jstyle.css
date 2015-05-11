@@ -27,14 +27,15 @@ a#home {
     -webkit-transition: all .6s ease-out; transition: all .6s ease-out;
 }
 
-#next {float:right; top:-24px;position:relative; margin-right:1%; display:none;}
-#prev {float:left; top:-20px; position:relative; margin-left:1%;display:none;}
+#next {float:right; top:-24px;position:relative; margin-right:1%; }
+#prev {float:left; top:-20px; position:relative; margin-left:1%;}
 .opac {
     opacity:0.4;
 }
 
 .helper {
         -webkit-transition: all 2.6s ease-out; transition: all 2.6s ease-out; color:#fff;
+		top: -10px;	position: absolute; left:0; width:100%;text-align:center;display:inline-block;
 }
 
 
@@ -42,7 +43,7 @@ a#home {
 
 /*Elements*/
 #wrapper {
-    width:96%; padding:0; margin:7% 2% 0; text-align:center; 
+    width:96%; padding:0; margin:9% 2% 0; text-align:center; position:relative;
 }
 
 #main {
@@ -163,7 +164,9 @@ a#home {
 		text-align:left;
 	}
 	.poetry .boxes p {
-			text-align:center;
+		text-align:center;
+		line-height: 1.6;
+		font-size: 18px;			
 	}
     .poetry .boxes, .home .boxes, .stories .boxes, .bio .boxes, .pics .boxes {
         width:96%;
