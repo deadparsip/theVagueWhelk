@@ -137,7 +137,11 @@ a#home {
 		margin: 1%;
 		float: left;
 		position: absolute;
-		top: 0;
+		top: 2px;
+		font-size:25px;
+	}
+	h2.big a {
+		color:#fff
 	}
     a#home {
         font-size:28px;
