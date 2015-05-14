@@ -1,6 +1,6 @@
 function Calippo() {
 
-    var cakes, $w, $h, $d, $b, width, $next, $prev, $boxes, $helper, $nav, $navUl, $linkers,
+    var cakes, $w, $h, $d, $b, width, $next, $prev, $boxes, $helper, $nav, $navUl, $navUlHeight, $linkers,
 		navUlTops,
 		// Closures stole my hamsters and returned them shaven
 		loc = window.location.href.indexOf('poetry') > 0 ? 'poetry' : 
@@ -61,7 +61,7 @@ function Calippo() {
                 if ($(this).find('h2').text().toLowerCase().indexOf(box.toLowerCase()) >= 0) {
                     $(this).show().addClass('fadeInRightBig visible');
                     cakes = $(this);
-                    if (i > 0) $prev.removeClass('opac');
+                    //if (i > 0) $prev.removeClass('opac');
                     match = true;
                     return;
                 }
@@ -105,19 +105,37 @@ function Calippo() {
 			getItem(event,link);			
 		});			
 		
-		window.localStorage.setItem('widths', width);
+		$navUlHeight = $navUl.height();
+		
+		window.localStorage.setItem('widths', width);		
     }
 
 	function nextNav(e) {
 		e.preventDefault();
-		navUlTops -= 130;
-		$navUl.css('top', navUlTops)
+		var biscuitLid =  function() {
+			return $navUlHeight - ((navUlTops-navUlTops)-navUlTops) < 126
+		}
+		if (!biscuitLid()) {
+			navUlTops -= 126;
+			$navUl.css('top', navUlTops);
+			$prev.removeClass('opac');		
+			if (biscuitLid()) {
+				$next.addClass('opac');	
+			}
+		}
 	}
 	
-	function prevNav() {
+	function prevNav(e) {
 		e.preventDefault();
-		navUlTops += 130;
-		$navUl.css('top',navUlTops);
+		console.log(navUlTops);
+		if (navUlTops !== 0) {		
+			navUlTops += 126;
+			$navUl.css('top',navUlTops);
+			$next.removeClass('opac');
+			if (navUlTops == 0) {
+				$prev.addClass('opac');
+			}
+		}
 	}
 
     function nextItem(e) {
@@ -136,6 +154,7 @@ function Calippo() {
                 }
             });
             $prev.removeClass('opac');
+			alert("potato")
         }
     }
 
@@ -154,6 +173,7 @@ function Calippo() {
                 }
             });
             $next.removeClass('opac');
+			alert("potato")
         }
     }
 	
