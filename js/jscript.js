@@ -1,26 +1,28 @@
 function Calippo() {
 
-    var cakes, $w, $h, $d, $b, width, $next, $prev, $boxes, $helper = $('.helper'); // Closures stole my hamsters and returned them shaven
-
-    var loc = window.location.href.indexOf('poetry') > 0 ? 'poetry' : window.location.href.indexOf('stories') > 0 ? 'stories' : window.location.href.indexOf('films') > 0 ? 'films' : window.location.href.indexOf('news') > 0 ? 'news' : window.location.href.indexOf('pics') > 0 ? 'pics' : window.location.href.indexOf('blog') > 0 ? 'blog' : 'home';
+    var cakes, $w, $h, $d, $b, width, $next, $prev, $boxes, $helper, $nav, $navUl, $linkers,
+		navUlTops,
+		// Closures stole my hamsters and returned them shaven
+		loc = window.location.href.indexOf('poetry') > 0 ? 'poetry' : 
+			  window.location.href.indexOf('stories') > 0 ? 'stories' : 
+			  window.location.href.indexOf('films') > 0 ? 'films' : 
+			  window.location.href.indexOf('news') > 0 ? 'news' : 
+			  window.location.href.indexOf('pics') > 0 ? 'pics' : 
+			  window.location.href.indexOf('blog') > 0 ? 'blog' : 'home';
 
     function init(loc) {
         var $istouchdevice = typeof window.ontouchstart != 'undefined',
             $ = jQuery;
-
+		
+		$helper = $('.helper');
         $d = $(document), $w = $(window), $b = $('body'),
-        width = $w.width(), height = $w.height(), $next = $('a.next'), $prev = $('a.prev'), $botty = $('#botty'),
-        $boxes = $('.boxes');
-        timer = 1;
+        width = $w.width(), height = $w.height(), $next = $('a.next'), $prev = $('a.prev'), $botty = $('#botty'), 
+        $boxes = $('.boxes'), timer = 1;        
+		$nav = $('nav'); $navUl = $('nav ul');
+		navUlTops  = 0;
 
-		var cacheDate = localStorage.getItem('cache');
-		if (cacheDate !== "casserole") {
-				window.localStorage.clear();
-				window.localStorage.setItem('cache', "casserole");
-		}	
-        
-		window.localStorage.setItem('widths', width);
-
+		$navUl.css('left',($nav.width() - $navUl.width()) / 2);
+		
         $botty.on('mouseover touchstart', function () {
             $(this).addClass("upIt");
         }).on('mouseout', function () {
@@ -31,12 +33,28 @@ function Calippo() {
             'width': width,
             'height': height
         });
+		
+		var cacheDate = localStorage.getItem('cache');
+		if (cacheDate !== "casserole") {
+				window.localStorage.clear();
+				window.localStorage.setItem('cache', "casserole");
+		}		
 
-        if (window.location.hash !== undefined && window.location.hash !== "" && window.location.hash !== "#") {
+        if (window.location.hash !== "" && window.location.hash !== "#") {
             localStorage.setItem('box' + loc, window.location.hash.replace('#', '').toLowerCase());
         }
+		
+		$boxes.each(function (i) {
+            var j = $($boxes[i]).find('h2').text().split(" ")[0].trim();
+			$($boxes[i]).addClass(j);
+			var link = '<li class="circle '+ j +'">'+ i + '</li>';			
+			$(link).appendTo($navUl);
+		});
+				
+		
+		//This is slightly long-winded way of returning to last item viewed. May redo this
+		$linkers = $navUl.find('.circle');
         var box = window.localStorage.getItem('box' + loc);
-
         if (box !== null) {
             var match = false;
             $boxes.each(function (i) {
@@ -48,6 +66,12 @@ function Calippo() {
                     return;
                 }
             });
+			$linkers.each(function (i) {					
+                if ($(this).hasClass(box.split(" ")[0])) {					
+                    $(this).addClass('selected');
+                    return;
+                }
+            });			
             if (match === false) {
                 cakes = $('.boxes').eq(0).show().addClass('fadeInRightBig');
                 window.localStorage.setItem('box' + loc, cakes.find('h2').text());
@@ -57,8 +81,8 @@ function Calippo() {
             window.localStorage.setItem('box' + loc, cakes.find('h2').text());
         }
 
-        $next.on('click', nextItem);
-        $prev.on('click', prevItem);
+        $next.on('click', nextNav);
+        $prev.on('click', prevNav);
         $boxes.on("swiperight", prevItem);
         $boxes.on("swipeleft", nextItem);
 
@@ -68,16 +92,33 @@ function Calippo() {
             timer = setTimeout(getSizes, 200);
         });
 
-        if ($('.helper').is(':visible')) {
+        if ($istouchdevice) {
             $('.helper').show();
 			setTimeout(function () {
 			   $helper.fadeOut(500);
-			}, 2000);			
-        }
+			}, 3000);			
+        }		
 		
+		$($navUl).on('click',function(event) {
+			var link = ($(event.target).attr('class').replace('circle',''));
+			$(event.target).addClass('selected').siblings().removeClass('selected');
+			getItem(event,link);			
+		});			
+		
+		window.localStorage.setItem('widths', width);
     }
 
-
+	function nextNav(e) {
+		e.preventDefault();
+		navUlTops -= 130;
+		$navUl.css('top', navUlTops)
+	}
+	
+	function prevNav() {
+		e.preventDefault();
+		navUlTops += 130;
+		$navUl.css('top',navUlTops);
+	}
 
     function nextItem(e) {
         e.preventDefault();
@@ -115,6 +156,19 @@ function Calippo() {
             $next.removeClass('opac');
         }
     }
+	
+    function getItem(e,item) {
+		e.preventDefault();
+        window.location.hash = "";
+		$('.fadeInRightBig, .fadeInLeftBig').removeClass('fadeInLeftBig fadeInRightBig').addClass('fadeOutLeftBig').on('animationend webkitAnimationEnd', function () {
+			cakes = $('.boxes.' + item.trim());
+			window.localStorage.setItem('box' + loc, cakes.find('h2').text());
+			$(this).hide().removeClass('fadeOutLeftBig').off('animationend webkitAnimationEnd');
+			cakes.show().addClass('fadeInLeftBig');
+		});        
+    }	
+	
+	
 
     function getSizes() {        		
 		width = $w.width().toString();        		
