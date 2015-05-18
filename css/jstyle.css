@@ -7,7 +7,7 @@ body {
 
 /*Fonts*/
 h1, h1 a {
-    font-size:34px; font-weight:400; color:#fff; text-align:right;margin:1% 2% 0;
+    font-size:50px; font-weight:400; color:#fff; text-align:right;margin:1% 2% 0;
 }
 h2 {
     font-size:30px; font-weight:400; margin: 1% 0 15px;
@@ -43,7 +43,7 @@ a#home {
 
 /*Elements*/
 #wrapper {
-    width:96%; padding:0; margin:9% 2% 0; text-align:center; position:relative;
+    width:96%; padding:0; margin:5% 2% 0; text-align:center; position:relative;min-height:650px;
 }
 
 #main {
@@ -86,17 +86,19 @@ nav.items {
 nav.items ul {
 	width:80%;
 	display:inline-block;
+	display:none;
 	padding:0;
 	margin:0;	
 	position:absolute;
 	top:0;
-	left:0px;
+	left:10%;
 	transition: all 1s;	
 }
 nav.items li {
-	margin:50px 30px;
-	line-height:1.5em;
-	cursor:pointer
+	margin:50px 20px;
+	line-height:1.3em;
+	cursor:pointer;
+	transition:all 1s;
 }
 
 #botty {
@@ -138,9 +140,9 @@ nav.items li {
 
 /*shapes*/
 .circle {
-	width: 25px;
-	height: 25px;
-	background: rgb(204, 204, 204);
+	width: 20px;
+	height: 20px;
+	background: rgba(204, 204, 204,0.8);
 	-moz-border-radius: 50%;
 	-webkit-border-radius: 50%;
 	border-radius: 50%;
@@ -153,9 +155,9 @@ nav.items li {
 #triangle-left, .prev {
 	width: 0;
 	height: 0;
-	border-top: 12px solid transparent;
-	border-right: 24px solid #fff;
-	border-bottom: 12px solid transparent;
+	border-top: 10px solid transparent;
+	border-right: 20px solid #fff;
+	border-bottom: 10px solid transparent;
 	display:inline-block;
 	margin:70px 0 30px;
 }
@@ -170,6 +172,11 @@ nav.items li {
 	display:inline-block;
 	margin:70px 0 30px;
 }
+
+
+
+
+
 
 
 /***************************************** tabs *****************************************/
@@ -201,8 +208,8 @@ nav.items li {
         display:block;
     }    
     
-    #wrapper {
-		margin-top:6%;
+    #wrapper {		
+		margin:9% 2% 0;
     }
     #main {
         padding-top:0;
