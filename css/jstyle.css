@@ -92,13 +92,13 @@ nav.items ul {
 	position:absolute;
 	top:0;
 	left:10%;
-	transition: all 1s;	
+	transition: all 0.3s;	
 }
 nav.items li {
 	margin:50px 20px;
 	line-height:1.3em;
 	cursor:pointer;
-	transition:all 1s;
+	transition:all 0.8s;
 }
 
 #botty {

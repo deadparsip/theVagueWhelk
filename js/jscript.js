@@ -1,7 +1,14 @@
 function Calippo() {
 
     var $navUl, $navUlHeight, $linkers,	navUlTops, biscuitLid;
-	var loc = window.location.href.indexOf('poetry') > 0 ? 'poetry' : window.location.href.indexOf('stories') > 0 ? 'stories' : window.location.href.indexOf('films') > 0 ? 'films' : window.location.href.indexOf('news') > 0 ? 'news' : window.location.href.indexOf('pics') > 0 ? 'pics' : window.location.href.indexOf('blog') > 0 ? 'blog' : 'home',
+	var _href = window.location.href,
+		loc = _href.indexOf('poetry') > 0 ? 'poetry' : _href.indexOf('stories') > 0 ? 'stories' : 
+		_href.indexOf('films') > 0 ? 'films' : 
+		_href.indexOf('news') > 0 ? 'news' : 
+		_href.indexOf('pics') > 0 ? 'pics' : 
+		_href.indexOf('spacesloth') > 0 ? 'spaceSloth' : 
+		_href.indexOf('blog') > 0 ? 'blog' : 'home',
+		
 		$istouchdevice = typeof window.ontouchstart != 'undefined',
         $ = jQuery,
 		$helper = $('.helper'),
@@ -27,6 +34,9 @@ function Calippo() {
 
 		
     function init(loc) {	
+
+		$next.hide();
+		$prev.hide();
 		
         $botty.on('mouseover touchstart', function () {
             $(this).addClass("upIt");
@@ -84,14 +94,12 @@ function Calippo() {
             timer = setTimeout(getSizes, 200);
         });
 
-        if ($istouchdevice) {
-            $('.helper').show();
-			setTimeout(function () {
-			   $helper.fadeOut(500);
-			}, 3000);			
-        }		
+		$('.helper').show();
+		setTimeout(function () {
+		   $helper.fadeOut(500);
+		}, 3000);			
 		
-		$($navUl).on('click',function(event) {
+		$navUl.on('click',function(event) {
 			var link = ($(event.target).attr('class').replace('circle','').replace('selected','').replace(/[^a-z,^A-Z]/g,'').trim());	
 			$(event.target).addClass('selected').siblings().removeClass('selected');
 			getItem(event,link);		
@@ -105,7 +113,19 @@ function Calippo() {
 			$('body').addClass('fadeOutDownBig animated').on('animationend webkitAnimationEnd', function () {
 				window.location.href="http://www.jsteve.uk";
 			});
-		});		
+		});	
+
+		var show = false;
+		$linkers.each(function() {		
+			if($(this).position().top > 0) {
+				show=true;
+				return
+			}			
+		});	
+		if (show==true) {			
+			$next.show();
+			$prev.show();
+		}		
     }
 
 	
@@ -152,7 +172,7 @@ function Calippo() {
                 if (!cakes.next('.boxes').length) {
                     $next.addClass('opac');
                 }
-							
+								
 				navUlTops  = ($('nav li.selected').position().top) * -1;
 				$navUl.css('top',navUlTops);
 			
