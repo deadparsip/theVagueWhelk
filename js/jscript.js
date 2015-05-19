@@ -1,24 +1,32 @@
 function Calippo() {
 
-    var loc, cakes, $w, $h, $d, $b, width, $next, $prev, $boxes, $helper, $nav, $navUl, $navUlHeight, $linkers,	navUlTops;
-	// a closure face stole my hamsters
-	loc = window.location.href.indexOf('poetry') > 0 ? 'poetry' : 
-		  window.location.href.indexOf('stories') > 0 ? 'stories' : 
-		  window.location.href.indexOf('films') > 0 ? 'films' : 
-		  window.location.href.indexOf('news') > 0 ? 'news' : 
-		  window.location.href.indexOf('pics') > 0 ? 'pics' : 
-		  window.location.href.indexOf('blog') > 0 ? 'blog' : 'home';
+    var $navUl, $navUlHeight, $linkers,	navUlTops, biscuitLid;
+	var loc = window.location.href.indexOf('poetry') > 0 ? 'poetry' : window.location.href.indexOf('stories') > 0 ? 'stories' : window.location.href.indexOf('films') > 0 ? 'films' : window.location.href.indexOf('news') > 0 ? 'news' : window.location.href.indexOf('pics') > 0 ? 'pics' : window.location.href.indexOf('blog') > 0 ? 'blog' : 'home',
+		$istouchdevice = typeof window.ontouchstart != 'undefined',
+        $ = jQuery,
+		$helper = $('.helper'),
+		$d = $(document),
+		$w = $(window),
+		$b = $('body'),
+		width = $w.width(),
+		height = $w.height(),
+		$next = $('a.next'),
+        $prev = $('a.prev'),
+        $botty = $('#botty'),
+        $boxes = $('.boxes'),
+        timer = 1,
+		$nav = $('nav'),
+		navUlTops  = 0,
+		$navUl = $('nav ul').show(),
+		_hash = window.location.hash,
+		cacheDate = localStorage.getItem('cache'),
+		cakes = {};   
+		var biscuitLid =  function() {
+			return ($navUlHeight - (navUlTops * -1))  == 120
+		}
 
-    function init(loc) {
-        var $istouchdevice = typeof window.ontouchstart != 'undefined', $ = jQuery;	
-		loc = loc;		
-		$helper = $('.helper');		
-        $d = $(document), $w = $(window), $b = $('body'),
-        width = $w.width(), height = $w.height(), $next = $('a.next'), $prev = $('a.prev'), $botty = $('#botty'), 
-        $boxes = $('.boxes'), timer = 1;        
-		$nav = $('nav'); $navUl = $('nav ul').show();
-		navUlTops  = 0;	
 		
+    function init(loc) {	
 		
         $botty.on('mouseover touchstart', function () {
             $(this).addClass("upIt");
@@ -26,42 +34,43 @@ function Calippo() {
             $(this).removeClass("upIt");
         });
 
-        $b.css({
-            'width': width,
-            'height': height
-        });
+        $b.css({ 'width': width,'height': height });
 		
 		var cacheDate = localStorage.getItem('cache');
-		if (cacheDate !== "jamTrolley") {
+		if (cacheDate !== "manifestFace") {
 				window.localStorage.clear();
-				window.localStorage.setItem('cache', "jamTrolley");
+				window.localStorage.setItem('cache', "manifestFace");
 		}		
 
         if (window.location.hash !== "" && window.location.hash !== "#") {
-            localStorage.setItem('box' + loc, window.location.hash.replace(/\s/g,'').slice(0,10));
+            localStorage.setItem('box' + loc, window.location.hash.replace(/[^a-z,^A-Z]/g,'').slice(0,10));
         }
 		
 		$boxes.each(function (i) {
-            var j = $($boxes[i]).find('h2').text().replace(/\s/g,'').replace(/\//g,'').slice(0,10);
+            var j = $($boxes[i]).find('h2').text().replace(/[^a-z,^A-Z]/g,'').slice(0,10);
 			$($boxes[i]).addClass(j);
 			var link = '<li class="circle '+ j +'">'+ i + '</li>';			
 			$(link).appendTo($navUl);
 		});
 				
+		$navUlHeight = $navUl.height();		
 		
 		$linkers = $navUl.find('.circle');
+		
         var box = window.localStorage.getItem('box' + loc);
         if (box !== null && $('.'+box).length) {
             cakes = $('.'+box).show().addClass('fadeInRightBig visible');			
 			$navUl.find('.'+box).addClass('selected');		
 			if (cakes.prev('.boxes').length) {
 				$prev.removeClass('opac');
-			}
-			$navUl.css('top',($('nav li.selected').offset().top - 135) * -1);
-			navUlTops  = ($('nav li.selected').offset().top - 135) * -1;	
+			}			
+			navUlTops  = ($('nav li.selected').position().top) * -1;
+			$navUl.css('top',navUlTops);
+			if (biscuitLid()) $next.addClass('opac');
         } 
 		else {
             cakes = $('.boxes').eq(0).show().addClass('fadeInRightBig');
+			$linkers.eq(0).addClass('selected');
         }
 
         $next.on('click', nextNav);
@@ -83,22 +92,25 @@ function Calippo() {
         }		
 		
 		$($navUl).on('click',function(event) {
-			$(this).attr('disabled','disable');
-			var link = ($(event.target).attr('class').replace('circle','').replace('selected','').replace(/\//g,'').trim());	
-			console.log("gg " + link);
+			var link = ($(event.target).attr('class').replace('circle','').replace('selected','').replace(/[^a-z,^A-Z]/g,'').trim());	
 			$(event.target).addClass('selected').siblings().removeClass('selected');
-			getItem(event,link);				
+			getItem(event,link);		
 		});			
 		
-		$navUlHeight = $navUl.height();		
 		window.localStorage.setItem('widths', width);		
+		
+		
+		$('h1 a, h2 a').click(function(e){
+			e.preventDefault();
+			$('body').addClass('fadeOutDownBig animated').on('animationend webkitAnimationEnd', function () {
+				window.location.href="http://www.jsteve.uk";
+			});
+		});		
     }
 
+	
 	function nextNav(e) {
-		e.preventDefault();
-		var biscuitLid =  function() {
-			return $navUlHeight - ((navUlTops-navUlTops)-navUlTops) < 120
-		}
+		e.preventDefault();		
 		if (!biscuitLid()) {
 			navUlTops -= 120;
 			$navUl.css('top', navUlTops);
@@ -106,8 +118,11 @@ function Calippo() {
 			if (biscuitLid()) {
 				$next.addClass('opac');	
 			}
+		} else {
+			$next.addClass('opac');	
 		}
 	}
+	
 	
 	function prevNav(e) {
 		e.preventDefault();
@@ -125,10 +140,11 @@ function Calippo() {
         e.preventDefault();
         window.location.hash = "";
         if (cakes.next('.boxes').length) {
+			
             cakes.removeClass('fadeInLeftBig fadeInRightBig').addClass('fadeOutLeftBig').on('animationend webkitAnimationEnd', function () {
                 window.location.hash = "";
                 cakes = $(this).next();
-				var egg = cakes.find('h2').text().replace(/\s/g,'').slice(0,10);
+				var egg = cakes.find('h2').text().replace(/[^a-z,^A-Z]/g,'').slice(0,10);
 				$navUl.find('.'+egg).addClass('selected').siblings().removeClass('selected');
                 window.localStorage.setItem('box' + loc, egg);
                 $(this).hide().removeClass('fadeOutLeftBig').off('animationend webkitAnimationEnd')
@@ -136,6 +152,10 @@ function Calippo() {
                 if (!cakes.next('.boxes').length) {
                     $next.addClass('opac');
                 }
+							
+				navUlTops  = ($('nav li.selected').position().top) * -1;
+				$navUl.css('top',navUlTops);
+			
             });
             $prev.removeClass('opac');
         }
@@ -143,11 +163,12 @@ function Calippo() {
 
     function prevItem(e) {
         e.preventDefault();
-        window.location.hash = "";
+        window.location.hash = "";	
+			
         if (cakes.prev('.boxes').length) {
             cakes.removeClass('fadeInLeftBig fadeInRightBig').addClass('fadeOutRightBig').on('animationend webkitAnimationEnd', function () {
                 cakes = $(this).prev();				
-				var egg = cakes.find('h2').text().replace(/\s/g,'').slice(0,10);
+				var egg = cakes.find('h2').text().replace(/[^a-z,^A-Z]/g,'').slice(0,10);
 				$navUl.find('.'+egg).addClass('selected').siblings().removeClass('selected');				
                 window.localStorage.setItem('box' + loc, egg);
                 $(this).hide().removeClass('fadeOutRightBig').off('animationend webkitAnimationEnd')
@@ -155,6 +176,9 @@ function Calippo() {
                 if (!cakes.prev('.boxes').length) {
                     $prev.addClass('opac');
                 }
+				navUlTops  = ($('nav li.selected').position().top) * -1;
+				$navUl.css('top',navUlTops);
+		
             });
             $next.removeClass('opac');
         }
@@ -167,7 +191,7 @@ function Calippo() {
 			window.location.hash = "";
 			$('.fadeInRightBig, .fadeInLeftBig').removeClass('fadeInLeftBig fadeInRightBig').addClass('fadeOutLeftBig').on('animationend webkitAnimationEnd', function () {				
 				localStorage.setItem('box' + loc, item);
-				$(this).hide().removeClass('fadeOutLeftBig').off('animationend webkitAnimationEnd');
+				$(this).not('li').hide().removeClass('fadeOutLeftBig').off('animationend webkitAnimationEnd');
 				cakes.show().addClass('fadeInLeftBig');			
 			});        
 		}
