@@ -35,7 +35,7 @@ a#home {
 
 .helper {
         -webkit-transition: all 2.6s ease-out; transition: all 2.6s ease-out; color:#fff;
-		top: -10px;	position: absolute; left:0; width:100%;text-align:center;display:inline-block;
+		top: 0px;	position: absolute; left:0; width:100%;text-align:center;display:inline-block;
 }
 
 
@@ -209,7 +209,7 @@ nav.items li {
     }    
     
     #wrapper {		
-		margin:9% 2% 0;
+		margin:3% 2% 0;
     }
     #main {
         padding-top:0;

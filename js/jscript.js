@@ -53,11 +53,11 @@ function Calippo() {
 		}		
 
         if (window.location.hash !== "" && window.location.hash !== "#") {
-            localStorage.setItem('box' + loc, window.location.hash.replace(/[^a-z,^A-Z]/g,'').slice(0,10));
+            localStorage.setItem('box' + loc, window.location.hash.replace(/[^a-z,^A-Z]/g,'').slice(0,20));
         }
 		
 		$boxes.each(function (i) {
-            var j = $($boxes[i]).find('h2').text().replace(/[^a-z,^A-Z]/g,'').slice(0,10);
+            var j = $($boxes[i]).find('h2').text().replace(/[^a-z,^A-Z]/g,'').slice(0,20);
 			$($boxes[i]).addClass(j);
 			var link = '<li class="circle '+ j +'">'+ i + '</li>';			
 			$(link).appendTo($navUl);
@@ -99,7 +99,7 @@ function Calippo() {
 		   $helper.fadeOut(500);
 		}, 3000);			
 		
-		$navUl.on('click',function(event) {
+		$linkers.on('click',function(event) {
 			var link = ($(event.target).attr('class').replace('circle','').replace('selected','').replace(/[^a-z,^A-Z]/g,'').trim());	
 			$(event.target).addClass('selected').siblings().removeClass('selected');
 			getItem(event,link);		
@@ -164,7 +164,7 @@ function Calippo() {
             cakes.removeClass('fadeInLeftBig fadeInRightBig').addClass('fadeOutLeftBig').on('animationend webkitAnimationEnd', function () {
                 window.location.hash = "";
                 cakes = $(this).next();
-				var egg = cakes.find('h2').text().replace(/[^a-z,^A-Z]/g,'').slice(0,10);
+				var egg = cakes.find('h2').text().replace(/[^a-z,^A-Z]/g,'').slice(0,20);
 				$navUl.find('.'+egg).addClass('selected').siblings().removeClass('selected');
                 window.localStorage.setItem('box' + loc, egg);
                 $(this).hide().removeClass('fadeOutLeftBig').off('animationend webkitAnimationEnd')
@@ -188,7 +188,7 @@ function Calippo() {
         if (cakes.prev('.boxes').length) {
             cakes.removeClass('fadeInLeftBig fadeInRightBig').addClass('fadeOutRightBig').on('animationend webkitAnimationEnd', function () {
                 cakes = $(this).prev();				
-				var egg = cakes.find('h2').text().replace(/[^a-z,^A-Z]/g,'').slice(0,10);
+				var egg = cakes.find('h2').text().replace(/[^a-z,^A-Z]/g,'').slice(0,20);
 				$navUl.find('.'+egg).addClass('selected').siblings().removeClass('selected');				
                 window.localStorage.setItem('box' + loc, egg);
                 $(this).hide().removeClass('fadeOutRightBig').off('animationend webkitAnimationEnd')
