@@ -242,6 +242,7 @@ nav.items li {
     
     #botty {
         bottom:-75px;
+		display:none
     }
     #botty .contact {
         background-size:normal;    
