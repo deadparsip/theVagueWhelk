@@ -7,7 +7,7 @@ body {
 
 /*Fonts*/
 h1, h1 a {
-    font-size:50px; font-weight:400; color:#fff; text-align:right;margin:1% 2% 0;
+    font-size:41px; font-weight:400; color:#fff; text-align:right;margin:1% 2% 0;
 }
 h2 {
     font-size:30px; font-weight:400; margin: 1% 0 15px;
@@ -182,8 +182,9 @@ nav.items li {
 /***************************************** tabs *****************************************/
 @media only screen and (min-width: 520px) { 
     h1,h1 a {
-        font-size:70px; line-height:1em;
+        font-size:57px; line-height:1em;
     }
+	
     h2 {
         font-size:37px;
         margin:5px auto 15px;
@@ -261,7 +262,11 @@ nav.items li {
 
 /***************************************** desktops *****************************************/
 @media only screen and (min-width: 980px) { 
-    h2 {
+    h1,h1 a {
+        font-size:57px; line-height:1em;
+    }
+	
+	h2 {
         font-size:47px;
     }
     
