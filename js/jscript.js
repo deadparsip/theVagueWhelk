@@ -144,9 +144,9 @@ function Calippo() {
 		$prev.hide();
 			
 		var cacheDate = localStorage.getItem('cache');
-		if (cacheDate !== "manifestFace") {
+		if (cacheDate !== "trouserclap") {
 			window.localStorage.clear();
-			window.localStorage.setItem('cache', "manifestFace");
+			window.localStorage.setItem('cache', "trouserclap");
 		}		
 
         if (_hash !== "" && _hash !== "#") {
