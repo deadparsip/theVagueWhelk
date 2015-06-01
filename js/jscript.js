@@ -1,11 +1,5 @@
 'use strict';
 
-(function($) {
-	$.fn.whelkit = function(text) {
-		return text.replace(/[^a-z,^A-Z]/g,'').replace('selected','').replace('circle','').slice(0,20); 
-	};
-}( jQuery ));
-
 
 function Calippo() {		
 
@@ -224,5 +218,12 @@ function Calippo() {
     };
 
 }
+
+(function($) {
+	$.fn.whelkit = function(text) {
+		return text.replace(/[^a-z,^A-Z]/g,'').replace('selected','').replace('circle','').slice(0,30); 
+	};
+}( jQuery ));
+
 
 var trouser = new Calippo();
