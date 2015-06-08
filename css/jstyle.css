@@ -29,6 +29,9 @@ a#home {
 
 #next {float:right; top:-24px;position:relative; margin-right:1%; }
 #prev {float:left; top:-20px; position:relative; margin-left:1%;}
+#next,#prev {
+	display:none;
+}
 .opac {
     opacity:0.4;
 }
