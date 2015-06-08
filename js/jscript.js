@@ -144,7 +144,7 @@ function Calippo() {
 		$linkers = $navUl.find('.circle');
 		
         var box = window.localStorage.getItem('box' + loc);
-        if (box !== null && $('.'+box).length) {
+		if (box !== null && $('.'+box).length) {
             $currentBox = $('.'+box).show().addClass('fadeInRightBig visible');						
 			$navUl.find('.'+box).addClass('selected');		
 			$prevBox = $currentBox.prev('article').length ? $currentBox.prev() : "";
@@ -171,10 +171,11 @@ function Calippo() {
 		   $helper.fadeOut(500);
 		}, 3000);			
 				
-		$linkers.on('click', function (event) { getItem(event); });
+		$nav.on('click', 'li', function (event) { getItem(event); });
 		
 
 		var show = false;
+
 		$linkers.each(function() {		
 			if($(this).position().top > 0) {
 				show=true;
