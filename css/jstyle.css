@@ -56,6 +56,9 @@ a#home {
 .boxes {
     width:96%; margin:3% 1% 1% 0;padding:1% 1% 3% 1%;background:#ccc;min-height:100px;display:inline-block; text-align:center;display:none;
 }
+.boxes:nth-child(0) {
+	display:inline-block;
+}
 
 .boxes p, .boxes li { 
 	margin:0 2%;
