@@ -35,13 +35,8 @@ function Calippo() {
 		if (!biscuitLid()) {
 			navUlTops -= _navOffsets;
 			$navUl.css('top', navUlTops);
-			$prev.removeClass('opac');		
-			if (biscuitLid()) {
-				$next.addClass('opac');	
-			}
-		} else {
-			$next.addClass('opac');	
 		}
+		navButtons();
 	}	
 	
 	function prevNav(e) {
@@ -49,11 +44,8 @@ function Calippo() {
 		if (navUlTops !== 0) {		
 			navUlTops += _navOffsets;
 			$navUl.css('top',navUlTops);
-			$next.removeClass('opac');
-			if (navUlTops == 0) {
-				$prev.addClass('opac');
-			}
 		}
+		navButtons();
 	}
 	
 	
@@ -88,9 +80,6 @@ function Calippo() {
                 $nextBox.hide().removeClass('fadeOutRightBig').off('animationend webkitAnimationEnd');
                 $currentBox.show().addClass('fadeInLeftBig');
             });    
-			if ($nextBox.length>0) {			
-				$next.removeClass('opac');
-			}
         }
     }
 	
@@ -100,7 +89,7 @@ function Calippo() {
 		window.location.hash="";
 		if (currentNum>-1) {
 			if ($currentBox.is(':visible')) {
-			$currentBox.removeClass('fadeInLeftBig fadeInRightBig').addClass('fadeOutLeftBig').on('animationend webkitAnimationEnd',showItem);
+				$currentBox.removeClass('fadeInLeftBig fadeInRightBig').addClass('fadeOutLeftBig').on('animationend webkitAnimationEnd',showItem);
 			}
 			else {
 				showItem();
@@ -115,17 +104,27 @@ function Calippo() {
 		$prevBox = $currentBox.prev('article').length ? $boxes.eq(currentNum-1) : "";
 		window.localStorage.setItem('box' + loc, $currentBox.attr('class').split(" ")[2]);			
 		$(this).hide().removeClass('fadeOutLeftBig').off('animationend webkitAnimationEnd');
-		$currentBox.show().addClass('fadeInLeftBig');				
+		$currentBox.show().addClass('fadeInLeftBig');	
+		
 		$currentNav = $linkers.eq(currentNum);
-		$currentNav.addClass('selected').siblings().removeClass('selected');		
-		if ($prevBox.length > 0) {
-			$prev.removeClass('opac');
-		}
-		navUlTops  = ($('nav li.selected').position().top) * -1;
-		$navUl.css('top',navUlTops);
-		if (biscuitLid()) $next.addClass('opac');
+		$currentNav.addClass('selected').siblings().removeClass('selected');			
+		navUlTops  = ($currentNav.position().top) * -1;
+		$navUl.css('top',navUlTops);	
+		navButtons();
 	}
 
+	function navButtons() {
+		if (navUlTops == 0) {
+			$prev.addClass('opac');
+		} else {
+			$prev.removeClass('opac');
+		}
+		if (biscuitLid()) {
+			$next.addClass('opac');	
+		} else {
+			$next.removeClass('opac');	
+		}		
+	}
 	
 	(function caching () {
 		if (cacheDate !== "trouserclap") {
@@ -148,11 +147,11 @@ function Calippo() {
 			var $hashBox = $boxes.eq(currentNum);
             if ($hashBox.length) {
 				showItem();
-            }
+            }			
         } else { //local storage nav
 			var box = window.localStorage.getItem('box' + loc);
 			currentNum = classes.indexOf(box);		
-			if (box !== null && currentNum>-1) {
+			if (box !== null && currentNum>-1) {				
 				getItem(box)
 			} 
 			else { //no nav
