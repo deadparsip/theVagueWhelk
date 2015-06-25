@@ -26,7 +26,7 @@ function Calippo() {
 		that=this,
 		classes=[];
 		var biscuitLid =  function() {
-			return ($navUlHeight - (navUlTops * -1))  == _navOffsets
+			return ($navUlHeight - (navUlTops * -1))  == _navOffsets			
 		}
 		
 	
@@ -50,6 +50,7 @@ function Calippo() {
 	
 	
     function nextItem(e) {
+		e.preventDefault();
         window.location.hash = "";		
 		if ($nextBox.length>0) {
 			$prevBox = $currentBox;
@@ -68,6 +69,7 @@ function Calippo() {
 	
 
     function prevItem(e) {
+		e.preventDefault();
 		if ($prevBox.length>0) {								
 			$nextBox = $currentBox;
 			$currentBox = $currentBox.prev();			
@@ -127,9 +129,9 @@ function Calippo() {
 	}
 	
 	(function caching () {
-		if (cacheDate !== "trouserclap") {
+		if (cacheDate !== "knicker-treaty") {
 			window.localStorage.clear();
-			window.localStorage.setItem('cache', "trouserclap");
+			window.localStorage.setItem('cache', "knicker-treaty");
 		}			
 	})();
 	

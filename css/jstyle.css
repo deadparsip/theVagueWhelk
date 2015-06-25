@@ -3,7 +3,9 @@ body {
     font-family: 'Quicksand', sans-serif; width:100%; margin:0; padding:0; background:#000;overflow-x:hidden;overflow-y:scroll;
     
 }
-
+p, li {
+	line-height:26px;
+	}
 
 /*Fonts*/
 h1, h1 a {
@@ -32,8 +34,8 @@ a#home {
 #next,#prev {
 	display:none;
 }
-.opac {
-    opacity:0.4;
+.opac, .opac:hover{
+    opacity:0.4; cursor:default;
 }
 
 .helper {
@@ -63,6 +65,9 @@ a#home {
 .boxes p, .boxes li { 
 	margin:0 2%;
 	text-align:left
+}
+.boxes li  {
+	margin-bottom:16px;
 }
 .stories .boxes p {
 	margin:2%;
