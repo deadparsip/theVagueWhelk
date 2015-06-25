@@ -19,7 +19,7 @@ function Calippo() {
 		_hash = window.location.hash.replace('#',''),
 		cacheDate = localStorage.getItem('cache'),
 		_navOffsets = 120,
-		$currentNav = $nav.find('li').eq(0),
+		$currentNav,
 		$currentBox = $boxes.eq(0),
 		$nextBox = $boxes.eq(1),
 		$prevBox = $boxes.eq(0),		
@@ -107,7 +107,7 @@ function Calippo() {
 		window.localStorage.setItem('box' + loc, $currentBox.attr('class').split(" ")[2]);			
 		$(this).hide().removeClass('fadeOutLeftBig').off('animationend webkitAnimationEnd');
 		$currentBox.show().addClass('fadeInLeftBig');	
-		
+		console.log(currentNum);
 		$currentNav = $linkers.eq(currentNum);
 		$currentNav.addClass('selected').siblings().removeClass('selected');			
 		navUlTops  = ($currentNav.position().top) * -1;
@@ -158,6 +158,8 @@ function Calippo() {
 			} 
 			else { //no nav
 				$currentBox.show();
+				console.log($currentNav);
+				$currentNav.addClass('selected');				
 			}			
 		}
 	};	
@@ -173,6 +175,8 @@ function Calippo() {
 			$(link).appendTo($navUl);
 			classes.push(j);
 		});
+		
+		$currentNav = $nav.find('li').eq(0);
 				
 		$navUlHeight = $navUl.height();				
 		$linkers = $navUl.find('.circle');
