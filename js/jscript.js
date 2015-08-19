@@ -59,10 +59,10 @@ function Calippo() {
 			$currentNav = $currentNav.hasClass('selected') ? $currentNav.next().addClass('selected') : $currentNav.addClass('selected');
 			$currentNav.siblings().removeClass('selected');
 			window.localStorage.setItem('box' + loc, $currentBox.attr('class').split(" ")[2]);
-            $prevBox.removeClass('fadeInLeftBig fadeInRightBig').addClass('fadeOutLeftBig').on('animationend webkitAnimationEnd', function () {
+            $prevBox.removeClass('fadeInUp').addClass('fadeOutDown').on('animationend webkitAnimationEnd', function () {
                 window.location.hash = "";                
-                $prevBox.hide().removeClass('fadeOutLeftBig').off('animationend webkitAnimationEnd');
-                $currentBox.show().addClass('fadeInRightBig');				
+                $prevBox.hide().removeClass('fadeOutDown').off('animationend webkitAnimationEnd');
+                $currentBox.show().addClass('fadeInUp');				
             });            
         }
     }
@@ -78,9 +78,9 @@ function Calippo() {
 			$currentNav.siblings().removeClass('selected');	
 			window.location.hash = "";		        
 			window.localStorage.setItem('box' + loc, $currentBox.attr('class').split(" ")[2]);
-            $nextBox.removeClass('fadeInLeftBig fadeInRightBig').addClass('fadeOutRightBig').on('animationend webkitAnimationEnd', function () {                						                
-                $nextBox.hide().removeClass('fadeOutRightBig').off('animationend webkitAnimationEnd');
-                $currentBox.show().addClass('fadeInLeftBig');
+            $nextBox.removeClass('fadeInUp').addClass('fadeOutDown').on('animationend webkitAnimationEnd', function () {                						                
+                $nextBox.hide().removeClass('fadeOutDown').off('animationend webkitAnimationEnd');
+                $currentBox.show().addClass('fadeInUp');
             });    
         }
     }
@@ -91,7 +91,7 @@ function Calippo() {
 		window.location.hash="";
 		if (currentNum>-1) {
 			if ($currentBox.is(':visible')) {
-				$currentBox.removeClass('fadeInLeftBig fadeInRightBig').addClass('fadeOutLeftBig').on('animationend webkitAnimationEnd',showItem);
+				$currentBox.removeClass('fadeInUp').addClass('fadeOutDown').on('animationend webkitAnimationEnd',showItem);
 			}
 			else {
 				showItem();
@@ -105,8 +105,8 @@ function Calippo() {
 		$nextBox = $boxes.eq(currentNum+1);
 		$prevBox = $currentBox.prev('article').length ? $boxes.eq(currentNum-1) : "";
 		window.localStorage.setItem('box' + loc, $currentBox.attr('class').split(" ")[2]);			
-		$(this).hide().removeClass('fadeOutLeftBig').off('animationend webkitAnimationEnd');
-		$currentBox.show().addClass('fadeInLeftBig');	
+		$(this).hide().removeClass('fadeOutDown').off('animationend webkitAnimationEnd');
+		$currentBox.show().addClass('fadeInUp');	
 		console.log(currentNum);
 		$currentNav = $linkers.eq(currentNum);
 		$currentNav.addClass('selected').siblings().removeClass('selected');			
@@ -129,9 +129,9 @@ function Calippo() {
 	}
 	
 	(function caching () {
-		if (cacheDate !== "knicker-treaty") {
+		if (cacheDate !== "potato-salad") {
 			window.localStorage.clear();
-			window.localStorage.setItem('cache', "knicker-treaty");
+			window.localStorage.setItem('cache', "potato-salad");
 		}			
 	})();
 	
@@ -193,13 +193,17 @@ function Calippo() {
 		});	
 
         $next.on('click', nextNav);
-        $prev.on('click', prevNav);
-        $boxes.on("swiperight", prevItem);
-        $boxes.on("swipeleft", nextItem);
+        $prev.on('click', prevNav);		
+        if (!!('ontouchstart' in window)) {
+			$boxes.on("swiperight", prevItem);
+			$boxes.on("swipeleft", nextItem);
+		}
 		$nav.on('click', 'li', function (event) { getItem(event.target.className); });
 		$('.helper').show();	
 		
 		showCorrectItem();
+		
+		
     }
 	
     return {
