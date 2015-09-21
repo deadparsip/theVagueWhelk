@@ -6,7 +6,7 @@
 <meta name="description" content="Jon Stevens web developer, dispenser of abstractions, cuckolder of mind-spoons, vin de table.">
 <meta name="HandheldFriendly" content="True">
 <meta name="MobileOptimized" content="320">
-<meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
+<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no, minimal-ui">
 <meta http-equiv="cleartype" content="on">
         
 <title>JSTEVE.UK</title>
@@ -19,36 +19,20 @@
 </head>
 
 <body>
+<div class="fb-like" data-href="http://www.thevaguewhelk.com/" data-width="300" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
 
 <h1><a href="http://jsteve.uk/">theVagueWhelk</a></h1>
-<img class="vaguely" src="../img/vague-whelk.png" alt="Vague Whelk you bitch"/>
+<!--<img class="vaguely" src="../img/vague-whelk.png" alt="Vague Whelk you bitch"/>-->
+<div id="debug"></div>
 
-<div id="wrapper">
-		
-	<span class="helper">
-		Swipe left and right to navigate
-	</span>
+<div id="wrapper">	
+	<img src="../img/swipe-left-small.gif" id="helper-left"></img>
 	
-	<div id="main" class="cf home">	
-		<nav id="items" class="items">
-			<a id="prev" href="/" class="links opac prev"></a>			
-			<ul></ul>			
-			<a id="next" href="/" class="links next"></a>
-		</nav>
-
-		<!--<article class="boxes animated">
-			<h2>Signs you might be a bit of an idiot</h2>
-			<p></p>
-			<ol>			
-				<li>The word 'like' appears makes up more than 9% of the words in your sentences</li>
-				<li>You regularly comment on youTube threads</li>
-				<li></li>
-				<li></li>
-			</ol>
-		</article>-->
-		
-		
-		
+	<div id="main" class="cf home">			
+		<nav id="items" class="items">						
+			<ul></ul>								
+		</nav>		
+			
 		<article class="boxes animated">
 			<h2>RULES of social media TO BE OBEYED ALL OF THE TIMES</h2>
 			<p>Am I getting old or was the woman just lying? As a species we are getting weirder, and the social framework within which we are all imprisoned, scratching our groins and incoherently gibbering, becomes evermore complex and seemingly arbitrary in this the shiny new age of INTERNETS. Let us not embrace the weirdness but maybe clear it up so we all UNDERSTAND the RULES fully and are all ON BOARD*.</p>
@@ -235,7 +219,6 @@
 
 
 <script src="/js/jQuery.min.js"></script>
-<script src="/js/jquery.mobile.js"></script>
 <script src="/js/es6-shim.min.js"></script>
 <script src="/js/jscript.js"></script>
 <script>
@@ -243,5 +226,14 @@
     	trouser.init('blog');
 	});
 </script>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.3&appId=441624989266596";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 </body>
 </html>	

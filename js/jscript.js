@@ -15,6 +15,10 @@ function Calippo() {
 		arrBoxes = $.makeArray($boxes),
 		$nav = $('nav'),
 		navUlTops  = 0,
+		navUlLeft  = 0,
+		navUlWidth = 0,
+		windowWidth = 0,
+		maxUl =0,
 		$navUl = $('nav ul').show(),
 		_hash = window.location.hash.replace('#',''),
 		cacheDate = localStorage.getItem('cache'),
@@ -26,10 +30,10 @@ function Calippo() {
 		that=this,
 		classes=[];
 		var biscuitLid =  function() {
-			return ($navUlHeight - (navUlTops * -1))  == _navOffsets			
+			return ($navUlHeight - (navUlTops * -1))  == _navOffsets;	
 		}
 		
-	
+	/*
 	function nextNav(e) {
 		e.preventDefault();		
 		if (!biscuitLid()) {
@@ -46,49 +50,71 @@ function Calippo() {
 			$navUl.css('top',navUlTops);
 		}
 		navButtons();
-	}
-	
-	
-    function nextItem(e) {
+	}*/
+	 
+	function navAlong(e) {
 		e.preventDefault();
+		if (navUlLeft < 0 ) {
+			navUlLeft += 120;
+			$navUl.css('left', navUlLeft);
+		}
+	}	
+	
+	function navBack(e) {
+		e.preventDefault();		
+		if (navUlLeft > (maxUl * -1)) {
+			navUlLeft -= 120;
+			$navUl.css('left', navUlLeft);
+		}
+	}	
+	
+	
+    function nextItem(e) {		
+		e.preventDefault();		
         window.location.hash = "";		
-		if ($nextBox.length>0) {
+		if ($nextBox.length>0) {						
 			$prevBox = $currentBox;
 			$currentBox = $currentBox.next();
 			$nextBox = $currentBox.next().length ? $currentBox.next() : "";		
 			$currentNav = $currentNav.hasClass('selected') ? $currentNav.next().addClass('selected') : $currentNav.addClass('selected');
 			$currentNav.siblings().removeClass('selected');
+			//navUlTops  = ($currentNav.position().top) * -1;
+			//$navUl.css('top',navUlTops);				
 			window.localStorage.setItem('box' + loc, $currentBox.attr('class').split(" ")[2]);
-            $prevBox.removeClass('fadeInUp').addClass('fadeOutDown').on('animationend webkitAnimationEnd', function () {
+            $prevBox.removeClass('fadeInUp fadeInRight fadeInLeft').addClass('fadeOutLeft').on('animationend webkitAnimationEnd', function () {
                 window.location.hash = "";                
-                $prevBox.hide().removeClass('fadeOutDown').off('animationend webkitAnimationEnd');
-                $currentBox.show().addClass('fadeInUp');				
+                $prevBox.hide().removeClass('fadeOutLeft').off('animationend webkitAnimationEnd');
+                $currentBox.show().addClass('fadeInRight');				
             });            
+			navBack(e);
         }
     }
 	
 
-    function prevItem(e) {
+    function prevItem(e) {		
 		e.preventDefault();
-		if ($prevBox.length>0) {								
+		if ($prevBox.length>0) {				
 			$nextBox = $currentBox;
 			$currentBox = $currentBox.prev();			
 			$prevBox = $currentBox.prev('article').length ? $currentBox.prev() : "";							
 			$currentNav=$currentNav.prev().length ? $currentNav.prev().addClass('selected') : $currentNav.removeClass('selected');
 			$currentNav.siblings().removeClass('selected');	
+			//navUlTops  = ($currentNav.position().top) * -1;
+			//$navUl.css('top',navUlTops);				
 			window.location.hash = "";		        
 			window.localStorage.setItem('box' + loc, $currentBox.attr('class').split(" ")[2]);
-            $nextBox.removeClass('fadeInUp').addClass('fadeOutDown').on('animationend webkitAnimationEnd', function () {                						                
-                $nextBox.hide().removeClass('fadeOutDown').off('animationend webkitAnimationEnd');
-                $currentBox.show().addClass('fadeInUp');
-            });    
+            $nextBox.removeClass('fadeInUp fadeInRight fadeInLeft').addClass('fadeOutRight').on('animationend webkitAnimationEnd', function () {                						                
+                $nextBox.hide().removeClass('fadeOutRight fadeOutDown').off('animationend webkitAnimationEnd');
+                $currentBox.show().addClass('fadeInLeft');
+            });    			
+			navAlong(e);
         }
     }
 	
 	
     function getItem(targetName) {        
 		currentNum = (classes.indexOf($.fn.whelkit(targetName)));
-		window.location.hash="";
+		window.location.hash="";	
 		if (currentNum>-1) {
 			if ($currentBox.is(':visible')) {
 				$currentBox.removeClass('fadeInUp').addClass('fadeOutDown').on('animationend webkitAnimationEnd',showItem);
@@ -105,14 +131,13 @@ function Calippo() {
 		$nextBox = $boxes.eq(currentNum+1);
 		$prevBox = $currentBox.prev('article').length ? $boxes.eq(currentNum-1) : "";
 		window.localStorage.setItem('box' + loc, $currentBox.attr('class').split(" ")[2]);			
+		$currentNav = $linkers.eq(currentNum);
+		$currentNav.addClass('selected').siblings().removeClass('selected');					
 		$(this).hide().removeClass('fadeOutDown').off('animationend webkitAnimationEnd');
 		$currentBox.show().addClass('fadeInUp');	
-		console.log(currentNum);
-		$currentNav = $linkers.eq(currentNum);
-		$currentNav.addClass('selected').siblings().removeClass('selected');			
-		navUlTops  = ($currentNav.position().top) * -1;
-		$navUl.css('top',navUlTops);	
-		navButtons();
+		//navUlTops  = ($currentNav.position().top) * -1;
+		//$navUl.css('top',navUlTops);	
+		//navButtons();
 	}
 
 	function navButtons() {
@@ -158,52 +183,103 @@ function Calippo() {
 			} 
 			else { //no nav
 				$currentBox.show();
-				console.log($currentNav);
+
 				$currentNav.addClass('selected');				
 			}			
 		}
-	};	
+	};		
 	
 	
     function init(lloc) {					
 		loc = lloc;
-				
-		$boxes.each(function (i) {
-            var j = $.fn.whelkit($($boxes[i]).find('h2').text().toLowerCase());
-			$($boxes[i]).addClass(j);
-			var link = '<li class="circle '+ j +'">'+ i + '</li>';			
-			$(link).appendTo($navUl);
-			classes.push(j);
-		});
 		
+		var colour = [
+			"rgb(92, 186, 255)",
+			"rgb(252, 190, 92)",
+			"rgb(255, 105, 105)",
+			"rgb(152, 255, 132)",
+			"rgb(191, 108, 255)",
+			"rgb(139, 210, 255)",
+			"rgb(254,255, 137)",
+			"rgb(108, 255, 132)",
+			"rgb(255, 251, 194)",
+			"rgb(156, 182, 255)",
+			"rgb(180, 179, 225)"];		
+		var randy = 0;
+		
+		if ($boxes.length > 1) {
+			$boxes.each(function (i) {
+				var j = $.fn.whelkit($($boxes[i]).find('h2').text().toLowerCase());
+				
+				var nRandy = Math.floor(Math.random() * 11);
+				do {
+					nRandy = Math.floor(Math.random() * 11);
+				} while (nRandy == randy);
+				randy = nRandy;
+				
+				$($boxes[i]).addClass(j);
+				$($boxes[i]).css('background-color', colour[nRandy]);
+				var link = '<li class="circle '+ j +'">'+ j + '</li>';			
+				$(link).css('background-color', colour[nRandy]).appendTo($navUl);
+				classes.push(j);
+			});
+		}
 		$currentNav = $nav.find('li').eq(0);
 				
 		$navUlHeight = $navUl.height();				
 		$linkers = $navUl.find('.circle');
 		
-		setTimeout(function () {
-		   $helper.fadeOut(500);
-		}, 3000);				
+		$navUl.css('width',$linkers.length*140);
 		
 		$linkers.each(function() {
-			if($(this).position().top > 0) {
+			if($(this).position().top > 0 && $boxes.length>1) {
 				$next.show();
 				return
 			}			
 		});	
 
-        $next.on('click', nextNav);
-        $prev.on('click', prevNav);		
-        if (!!('ontouchstart' in window)) {
+        $next.on('click', navBack);
+        $prev.on('click', navBack);
+        
+		$nav.on('swiperight', navAlong);
+        $nav.on('swipeleft', navBack);		
+		
+        //if (!!('ontouchstart' in window)) {
 			$boxes.on("swiperight", prevItem);
 			$boxes.on("swipeleft", nextItem);
-		}
-		$nav.on('click', 'li', function (event) { getItem(event.target.className); });
+		//}
+		
+		$(document).on('click', $linkers, function (event) { getItem(event.target.className); });
+		
+		event.stopPropagation();
 		$('.helper').show();	
 		
-		showCorrectItem();
+		showCorrectItem();			
 		
+		navUlWidth = $navUl.width();
+		windowWidth = $(window).width();
+		maxUl = (($linkers.length)-1) * 140;
 		
+		window.onresize = function(){
+			navUlWidth = $navUl.width();
+			windowWidth = $(window).width();
+			maxUl = (navUlWidth - windowWidth);
+		};		
+		$('#debug').text('li = ' + $linkers.length + 'navul w = ' + maxUl);
+		
+		setTimeout(function(){
+			$('#helper-left').fadeIn(1200);
+			setTimeout(function(){
+				$('#helper-left').fadeOut(600);	
+			},2500);
+		},2500);
+		console.log(Array.indexOf);
+		
+		var bods = ['one','two','three','four','five'];
+		
+		setInterval(function(){
+			$('body').eq(0).attr('class',bods[Math.floor(Math.random() * 4)]);
+		},5000);
     }
 	
     return {

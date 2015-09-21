@@ -1,7 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Quicksand:400,700);
 body {
-    font-family: 'Quicksand', sans-serif; width:100%; margin:0; padding:0; background:#000;overflow-x:hidden;overflow-y:scroll;
-    
+    font-family: 'Quicksand', sans-serif; width:100%; margin:0; padding:0; background:#000;
+	overflow-x:hidden;overflow-y:scroll;
 }
 .fb-like {
 	float:right;
@@ -11,9 +11,19 @@ body {
 	margin:20px auto;
 }
 
+#debug {
+	position:absolute;
+	top:0;
+	left:0;
+	width:150px;
+	height:100px;
+	background:rgba(250,250,250,0.4);
+	display:none;
+}
+
 /*Fonts*/
 h1, h1 a {
-    font-size:41px; font-size:9vw; font-weight:400; color:#fff; text-align:right;margin:1% 2% 0;
+    font-size:41px; font-size:10vw; font-weight:400; color:#fff; text-align:right;margin:5% 1% 0;
 }
 h2,h3 {
     font-size:30px; font-weight:400; margin: 1% 0 15px;
@@ -39,19 +49,28 @@ p.output {
 }
 a#home {
     position:absolute;top:5px;left:5px;
-}.links {
-    -webkit-transition: all .6s ease-out; transition: all .6s ease-out;
+}
+.links {
+    -webkit-transition: all .3s ease-out; transition: all .3s ease-out;
 }
 a.link,p.go {
 	color:#2b00e3;
 }
-#next {float:right; top:-24px;position:relative; margin-right:1%; }
-#prev {float:left; top:-20px; position:relative; margin-left:1%;}
-#next,#prev {
-	/*display:none;*/
-}
+#next {
+    float: right;
+    top: -57px;
+    position: absolute;
+    margin-right: 1%;
+    z-index: 100;
+    right: 0;
+	display:none;
+ }
+ 
+#prev {float:left; top:-20px; position:absolute; margin-left:1%; height:30px;display:none;}
+
+
 .opac, .opac:hover{
-    opacity:0; cursor:default;
+    opacity:0.2; cursor:default;
 }
 
 .helper {
@@ -60,7 +79,7 @@ a.link,p.go {
 }
 
 .vaguely {
-width: 20vw;
+	width: 20vw;
     position: absolute;
     top: 0%;
     left: 2%;
@@ -69,21 +88,26 @@ width: 20vw;
     z-index: -1;
 	}
 
+#helper-left {
+	position:absolute;
+	top:25%;
+	right:2%;
+	z-index:999;
+	display:none;
+}
 
 /*Elements*/
 #wrapper {
-    width:96%; padding:0; margin:5% 2% 0; text-align:center; position:relative;min-height:650px;
+    width:100%; padding:0; margin:5% 0 0 0; text-align:center; position:relative; min-height:650px;
 }
 
 #main {
-    width:99%; padding:1% 0 0 1%; margin:0 auto; max-width:1024px;position:relative;
+    width:100%; padding:1% 0 0 0; margin:0 auto; position:relative; max-width:1200px;
 }
 
 .boxes {
-    width:96%; margin:3% 1% 1% 0;padding:1% 1% 3% 1%;background:#ccc;min-height:100px;display:inline-block; text-align:center;display:none;
-}
-.boxes:nth-child(0) {
-	display:inline-block;
+    width:98%; margin:0;padding:1% 1% 3% 1%; background:#ccc;min-height:100px;
+	display:inline-block; text-align:center; display:none;
 }
 
 .boxes p, .boxes li { 
@@ -104,8 +128,8 @@ width: 20vw;
     width:96%;    
 }
 .boxes img {
-    width: 110.5%;
-    margin: 0px 0px 0px -5%;
+    width: 100%;
+    margin: 0px;
 	max-width: 980px;
 }    
 .poetry .boxes a,.stories .boxes a {
@@ -115,30 +139,40 @@ width: 20vw;
     background:#aeadad;
 }
 
-nav.items {
+.items {
 	width:100%;
-	height:100px;
+	height:50px;
 	overflow:hidden;
 	padding:0;
-	margin:0;
+	margin:40px 0 0 0;
 	position:relative;	
 }
-nav.items ul {
-	width:80%;
-	display:inline-block;
+.items ul {
+	width:2000px;
+	display:block;
 	display:none;
 	padding:0;
 	margin:0;	
 	position:absolute;
 	top:0;
-	left:10%;
 	transition: all 0.3s;	
 }
-nav.items li {
-	margin:50px 20px;
-	line-height:1.3em;
-	cursor:pointer;
-	transition:all 0.8s;
+.items li {
+    margin: 0;
+    cursor: pointer;
+    transition: all 0s;
+    width: 120px;
+	float:left;
+    padding: 13px 10px 15px;
+	list-style-type:none;
+	word-wrap:break-word;
+	line-height:2em;
+	height:30px;
+}
+::selection {
+	background-color:transparent;
+	text-shadow:transparent;	
+	color:inherit;
 }
 
 #main nav li {
@@ -148,7 +182,7 @@ nav.items li {
 #botty {
     position:fixed;bottom:-40px;width:100%;min-height:45px;margin:0 auto;
     -webkit-transition: all .6s ease-out; transition: all .6s ease-out;
-    -webkit-backface-visibility: hidden;	display:none
+    -webkit-backface-visibility: hidden;	
 }
 #botty.upIt {
     bottom:0;
@@ -187,13 +221,13 @@ nav.items li {
 
 /*shapes*/
 .circle {
-	width: 20px;
+	/*width: 20px;
 	height: 20px;
 	background: rgba(204, 204, 204,0.8);
 	-moz-border-radius: 50%;
 	-webkit-border-radius: 50%;
 	border-radius: 50%;
-	display:inline-block;
+	display:inline-block;*/
 }
 .circle.selected {
 	background: rgb(250, 250, 250);
@@ -203,7 +237,7 @@ nav.items li {
 	width: 0;
 	height: 0;
 	border-top: 10px solid transparent;
-	border-right: 20px solid #fff;
+	border-right: 20px solid #000;
 	border-bottom: 10px solid transparent;
 	display:inline-block;
 	margin:70px 0 30px;
@@ -214,14 +248,28 @@ nav.items li {
 	width: 0;
 	height: 0;
 	border-top: 12px solid transparent;
-	border-left: 24px solid #fff;
+	border-left: 24px solid #000;
 	border-bottom: 12px solid transparent;
 	display:inline-block;
 	margin:70px 0 30px;
 }
 
 
+.new-things img{
+	margin-bottom:30px;
+}
 
+.new-things p {
+	margin-bottom:20px;
+}
+
+
+html .fb_iframe_widget {
+    display: inline-block;
+    position: absolute!important;
+    right: 1%;
+	top:0;
+}
 
 
 
@@ -262,7 +310,7 @@ nav.items li {
     }    
     
     #wrapper {		
-		margin:3% 2% 0;
+		margin:3% 0 0 0;
     }
     #main {
         padding-top:0;
@@ -271,39 +319,38 @@ nav.items li {
     .boxes {
         width:48%; 
         min-height:250px;
-        float:left;		
     }
 	
 	.boxes p {
 		text-align:left;
 		font-size:20px;
 		line-height:32px;
+		
 	}
 	.poetry .boxes p {
 		text-align:center;
 		line-height: 1.6;
 		font-size: 18px;			
 	}
-    .poetry .boxes, .home .boxes, .stories .boxes, .bio .boxes, .pics .boxes {
-        width:96%;
-        max-width:500px;
-        margin:3% auto; 
+    .boxes, .home .boxes, .stories .boxes, .bio .boxes, .pics .boxes {
+        width:98%;
         float:none;
         min-height:10px;
-		max-width:980px;
     }
-    
-    
-    #botty {
-        
-    }
+	    
     #botty .contact {
         background-size:normal;    
     }
     #botty .contact, #botty .contact a,#botty .contact.git,#botty .contact.git a {
         width:70px;height:100px;
     }   
-    
+    .boxes img {
+		max-width: 1200px;
+		width: 100%;
+		margin: 0;		
+	}
+	
+	
 }
 
 
@@ -328,12 +375,6 @@ nav.items li {
         min-width:980px;
     }
 
-    #next {
-        display:block;
-    }
-    #prev {        
-        display:block;
-    }
 	.boxes img {				
 		max-width: 1200px;
 	}	

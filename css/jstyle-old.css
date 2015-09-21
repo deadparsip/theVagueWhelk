@@ -1,0 +1,430 @@
+@import url(https://fonts.googleapis.com/css?family=Quicksand:400,700);
+body {
+    font-family: 'Quicksand', sans-serif; width:100%; margin:0; padding:0;
+	background: url(../img/films/war-badger2.jpg);
+	overflow-x:hidden; overflow-y:scroll;	transition:background 2s; background-size:100%;
+}
+
+body.one {
+	background-image: url(../img/films/solitude.jpg);
+}
+body.one {
+	background-image: url(../img/films/intrepid-horse.jpg);
+}
+body.two {
+	background-image: url(../img/films/space-badger.jpg);
+}
+body.three {
+	background-image: url(../img/banners/reluctant-aubergine.jpg);
+}
+body.four {
+	background-image: url(../img/begood.jpg);
+}
+body.five {
+	background-image: url(../img/biscuitTrousers4.jpg);
+}
+
+
+
+.fb-like {
+	float:right;
+	margin-right:10px;
+}
+.boxes .fb-share-button {
+	margin:20px auto;
+}
+
+#debug {
+	position:absolute;
+	top:0;
+	left:0;
+	width:150px;
+	height:100px;
+	background:rgba(250,250,250,0.4);
+	display:none;
+}
+
+/*Fonts*/
+h1, h1 a {
+    font-size:41px; font-size:10vw; font-weight:400; color:rgb(139, 210, 255); text-align:right;margin:5% 1% 0;
+}
+h2,h3 {
+    font-size:30px; font-weight:400; margin: 1% 0 15px;
+}
+h3 {
+	text-align:left;font-size:26px; margin: 3% 2% 16px
+}
+h2.big {
+	display:none;
+}
+a {
+    color:#000; text-decoration:none;
+}
+p, li {
+	line-height:27px;
+	}
+p.output {
+	font-weight:bold;
+	color:blue;
+}
+#home,.links {
+    color:#fff; font-size:24px; 
+}
+a#home {
+    position:absolute;top:5px;left:5px;
+}
+.links {
+    -webkit-transition: all .3s ease-out; transition: all .3s ease-out;
+}
+a.link,p.go {
+	color:#2b00e3;
+}
+#next {
+    float: right;
+    top: -57px;
+    position: absolute;
+    margin-right: 1%;
+    z-index: 100;
+    right: 0;
+	display:none;
+ }
+ 
+#prev {float:left; top:-20px; position:absolute; margin-left:1%; height:30px;display:none;}
+
+
+.opac, .opac:hover{
+    opacity:0.2; cursor:default;
+}
+
+.helper {
+        -webkit-transition: all 2.6s ease-out; transition: all 2.6s ease-out; color:#fff;
+		top: 0px;	position: absolute; left:0; width:100%;text-align:center;display:inline-block;
+}
+
+.vaguely {
+	width: 20vw;
+    position: absolute;
+    top: 0%;
+    left: 2%;
+    max-width: 200px;
+    min-width: 105px;
+    z-index: -1;
+	}
+
+#helper-left {
+	position:absolute;
+	top:25%;
+	right:2%;
+	z-index:999;
+	display:none;
+}
+
+/*Elements*/
+#wrapper {
+    width:100%; padding:0; margin:5% 0 0 0; text-align:center; position:relative; min-height:650px;
+}
+
+#main {
+    width:100%; padding:1% 0 0 0; margin:0 auto; position:relative;
+}
+
+.boxes {
+    width:98%; margin:0;padding:1% 1% 3% 1%; background:#ccc;min-height:100px;
+	display:inline-block; text-align:center; display:none; min-height:50vh;
+}
+
+.boxes p, .boxes li { 
+	margin:0 2%;
+	text-align:left;
+	font-size:18px;
+}
+.boxes li  {
+	margin-bottom:16px;
+}
+.stories .boxes p {
+	margin:2%;
+}
+.poetry .boxes p { 	
+	text-align:center
+}    
+.boxes img, .stories .boxes p, .bio .boxes p {
+    width:96%;    
+}
+.boxes img {
+    width: 100%;
+    margin: 0px;
+	max-width: 980px;
+}    
+.poetry .boxes a,.stories .boxes a {
+    text-decoration:underline;
+}
+.boxes a:hover {
+    background:#aeadad;
+}
+
+.items {
+	width:100%;
+	height:50px;
+	overflow:hidden;
+	padding:0;
+	margin:40px 0 0 0;
+	position:relative;	
+}
+.items ul {
+	width:2000px;
+	display:block;
+	display:none;
+	padding:0;
+	margin:0;	
+	position:absolute;
+	top:0;
+	transition: all 0.3s;	
+}
+.items li {
+    margin: 0;
+    cursor: pointer;
+    transition: all 0s;
+    width: 120px;
+	float:left;
+    padding: 13px 10px 15px;
+	list-style-type:none;
+	word-wrap:break-word;
+	line-height:2em;
+	height:30px;
+}
+::selection {
+	background-color:transparent;
+	text-shadow:transparent;	
+	color:inherit;
+}
+
+#main nav li {
+	color:#666;
+}
+
+#botty {
+    position:fixed;bottom:-40px;width:100%;min-height:45px;margin:0 auto;
+    -webkit-transition: all .6s ease-out; transition: all .6s ease-out;
+    -webkit-backface-visibility: hidden;	
+}
+#botty.upIt {
+    bottom:0;
+}
+#botty .contact {
+    width:45px;height:45px;float:left;background:url(/img/contactSprite.png)0 0 #fff;
+    background-size:1300%;
+}
+#botty .contact.twitter {
+    background-position:-95% 0;
+}
+#botty .contact.google {
+    background-position:-81% 0;
+}
+#botty .contact.fiddle {
+    background-position:-144.3% 0;
+}
+#botty .contact.fito {
+    background-position:-66.5% 0;
+}
+#botty .contact.linkedin {
+    background-position:-56.5% 0;
+}
+#botty .contact.git {
+    background-position:-18% 0; 
+    width:49px;
+}
+#botty .contact a {
+    display:block;width:50px;height:55px;
+}
+
+#buzzfeeds {
+	margin:20px 0;
+	padding:7px;
+}
+
+/*shapes*/
+.circle {
+	/*width: 20px;
+	height: 20px;
+	background: rgba(204, 204, 204,0.8);
+	-moz-border-radius: 50%;
+	-webkit-border-radius: 50%;
+	border-radius: 50%;
+	display:inline-block;*/
+}
+.circle.selected {
+	background: rgb(250, 250, 250);
+}
+
+#triangle-left, .prev {
+	width: 0;
+	height: 0;
+	border-top: 10px solid transparent;
+	border-right: 20px solid #000;
+	border-bottom: 10px solid transparent;
+	display:inline-block;
+	margin:70px 0 30px;
+}
+
+
+#triangle-right, .next {
+	width: 0;
+	height: 0;
+	border-top: 12px solid transparent;
+	border-left: 24px solid #000;
+	border-bottom: 12px solid transparent;
+	display:inline-block;
+	margin:70px 0 30px;
+}
+
+
+.new-things img{
+	margin-bottom:30px;
+}
+
+.new-things p {
+	margin-bottom:20px;
+}
+
+
+html .fb_iframe_widget {
+    display: inline-block;
+    position: absolute!important;
+    right: 1%;
+	top:0;
+}
+
+
+
+
+/***************************************** tabs *****************************************/
+@media only screen and (min-width: 520px) { 
+    h1,h1 a {
+        font-size:57px; font-size:9vw; line-height:1em;
+    }
+	
+    h2 {
+        font-size:37px;
+		font-size:5vw;
+        margin:5px auto 15px;
+    } 
+	h3 {
+	
+	}	
+	
+	h2.big {
+		color: #fff;
+		display:block;
+		margin: 1%;
+		float: left;
+		position: absolute;
+		top: 2px;
+		font-size:25px;
+	}
+	h2.big a {
+		color:#fff
+	}
+    a#home {
+        font-size:28px;
+        position:absolute;
+        top:2%;
+        left:1%;
+        display:block;
+    }    
+    
+    #wrapper {		
+		margin:3% 0 0 0;
+    }
+    #main {
+        padding-top:0;
+    }
+    
+    .boxes {
+        width:48%; 
+        min-height:250px;
+    }
+	
+	.boxes p {
+		text-align:left;
+		font-size:20px;
+		line-height:32px;
+		
+	}
+	.poetry .boxes p {
+		text-align:center;
+		line-height: 1.6;
+		font-size: 18px;			
+	}
+    .boxes, .home .boxes, .stories .boxes, .bio .boxes, .pics .boxes {
+        width:98%;
+        float:none;
+        min-height:50vh;
+    }
+	    
+    #botty .contact {
+        background-size:normal;    
+    }
+    #botty .contact, #botty .contact a,#botty .contact.git,#botty .contact.git a {
+        width:70px;height:100px;
+    }   
+    .boxes img {
+		max-width: 1200px;
+		width: 100%;
+		margin: 0;		
+	}
+	
+	
+}
+
+
+
+
+
+
+
+
+
+/***************************************** desktops *****************************************/
+@media only screen and (min-width: 980px) { 
+    h1,h1 a {
+        font-size:88px; line-height:1em;
+    }
+	
+	h2 {
+        font-size:41px;
+    }
+    
+    #main {
+        min-width:980px;
+    }
+
+	.boxes img {				
+		max-width: 1200px;
+	}	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/*****************************fixes**************************************/
+.cf:before,
+.cf:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.cf:after {
+    clear: both;
+}
+
+/**
+ * For IE 6/7 only
+ * Include this ru

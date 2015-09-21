@@ -1336,6 +1336,8 @@
   -moz-animation-name: fadeOutDown;
   -o-animation-name: fadeOutDown;
   animation-name: fadeOutDown;
+    -webkit-animation-duration: 0.1s;
+  animation-duration: 0.1s;
 }
 @-webkit-keyframes fadeOutLeft {
   0% {
@@ -1382,6 +1384,8 @@
   -moz-animation-name: fadeOutLeft;
   -o-animation-name: fadeOutLeft;
   animation-name: fadeOutLeft;
+      -webkit-animation-duration: 0.1s;
+  animation-duration: 0.1s;
 }
 @-webkit-keyframes fadeOutRight {
   0% {
@@ -1428,6 +1432,8 @@
   -moz-animation-name: fadeOutRight;
   -o-animation-name: fadeOutRight;
   animation-name: fadeOutRight;
+        -webkit-animation-duration: 0.1s;
+  animation-duration: 0.1s;
 }
 @-webkit-keyframes fadeOutUpBig {
   0% {
